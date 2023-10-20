@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 
     [Header("--------------[ UI ]")]
     public TextMeshProUGUI scoreText;
+    public GameObject GameSet;
 
 
     [Header("--------------[ Object Pooling ]")]
@@ -44,7 +45,13 @@ public class GameManager : MonoBehaviour
         Next,
         Attach,
         Button,
-        Over
+        Over,
+        Kim,
+        A,
+        M,
+        Sorry,
+        H,
+        N
     };
     private int sfxCursor;
 
@@ -164,6 +171,8 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GameOverRoutine()
     {
+        SfxPlay(Sfx.Over);
+        bgmPlayer.Stop();
         // 1. 장면 안에 활성화 되어 있는 모든 동글 가져오기
         Dongle[] dongles = FindObjectsOfType<Dongle>();
 
@@ -180,8 +189,10 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
         }
 
-        yield return new WaitForSeconds(1f);
-        SfxPlay(Sfx.Over);
+        yield return new WaitForSeconds(8f);
+
+        GameSet.SetActive(true);
+        SfxPlay(Sfx.N);
     }
 
     public void SfxPlay(Sfx type)
@@ -203,7 +214,25 @@ public class GameManager : MonoBehaviour
             case Sfx.Over:
                 sfxPlayer[sfxCursor].clip = sfxClip[6];
                 break;
-            
+            case Sfx.Kim:
+                sfxPlayer[sfxCursor].clip = sfxClip[7];
+                break;
+            case Sfx.A:
+                sfxPlayer[sfxCursor].clip = sfxClip[8];
+                break;
+            case Sfx.M:
+                sfxPlayer[sfxCursor].clip = sfxClip[9];
+                break;
+            case Sfx.Sorry:
+                sfxPlayer[sfxCursor].clip = sfxClip[10];
+                break;
+            case Sfx.H:
+                sfxPlayer[sfxCursor].clip = sfxClip[11];
+                break;
+            case Sfx.N:
+                sfxPlayer[sfxCursor].clip = sfxClip[12];
+                break;
+
         }
         sfxPlayer[sfxCursor].Play();
         sfxCursor = (sfxCursor + 1) % sfxPlayer.Length;

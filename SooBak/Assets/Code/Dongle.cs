@@ -199,7 +199,44 @@ public class Dongle : MonoBehaviour
         
         anim.SetInteger("Level",level+1);
         EffectPlay();
-        manager.SfxPlay(GameManager.Sfx.LevelUp);
+
+
+        
+
+        if (level == 7)
+        {
+            manager.SfxPlay(GameManager.Sfx.Kim);
+
+        }
+
+
+
+        else if (level == 3)
+        {
+            manager.SfxPlay(GameManager.Sfx.A);
+        }
+        else if (level == 5)
+        {
+            manager.SfxPlay(GameManager.Sfx.M);
+        }
+        else if (level == 4)
+        {
+            manager.SfxPlay(GameManager.Sfx.Sorry);
+        }
+
+
+
+
+        else if (level<=3)
+        {
+            manager.SfxPlay(GameManager.Sfx.LevelUp);
+        }
+
+        else
+        {
+            Debug.Log("김성근");
+            manager.SfxPlay(GameManager.Sfx.H);
+        }
         
         yield return new WaitForSeconds(0.3f);
         level++;
